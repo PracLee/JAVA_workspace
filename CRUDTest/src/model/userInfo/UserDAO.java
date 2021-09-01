@@ -38,4 +38,22 @@ public class UserDAO {
 		}
 		return res;
 	}
+	
+	public void JoinUs(UserVO UVO) { // select all
+		Connection conn = JDBC.connect();
+		PreparedStatement pstmt = null;
+		try {
+			String sql = "insert into userInfo(ID,PW) values (?,?)"; // 최근 게시글 상단 배치
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, UVO.getID());
+			pstmt.setString(2, UVO.getPW());
+		} catch (Exception e) {
+			System.out.println("JoinUs()에서 출력");
+			e.printStackTrace();
+		} finally {
+			JDBC.disconnect(pstmt, conn);
+		}
+		return;
+	}
+	
 }

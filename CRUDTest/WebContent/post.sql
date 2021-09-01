@@ -1,5 +1,5 @@
 insert into userInfo values ('admin','1234','1');
-insert into userInfo values ('test','1234','0');
+insert into userInfo(ID,PW) values ('test01','1234');
 insert into post values('0','admin','공지사항','공지사항테스트입니다.',sysdate);
 insert into post values('1','admin','a','공지사항테스트입니다.',sysdate);
 insert into post values('2','admin','bbb','공지사항테스트입니다.',sysdate);

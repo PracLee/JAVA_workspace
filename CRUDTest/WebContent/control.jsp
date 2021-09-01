@@ -17,20 +17,20 @@
 		ArrayList<PostVO> datas = PDAO.showlist();
 		request.setAttribute("datas", datas);
 		pageContext.forward("template_list.jsp");
-	} else if (action.equals("view")) { // 글 내용보기
-
 	} else if (action.equals("post")) {
-		PVO.setId((String)session.getAttribute("ID"));
+		PVO.setId((String) session.getAttribute("ID"));
 		PVO.setTitle(request.getParameter("title"));
 		PVO.setContent(request.getParameter("content"));
-		if(PDAO.postPost(PVO)){
+		if (PDAO.postPost(PVO)) {
 			response.sendRedirect("index.jsp");
-		}else{
+		} else {
 			out.println("글작성중 오류발생!");
 		}
 	} else if (action.equals("login")) {
-		UVO.setID(request.getParameter("ID"));
-		UVO.setPW(request.getParameter("PW"));
+		if (UVO.getID().equals("")||UVO.getPW().equals("")) {
+			UVO.setID(request.getParameter("ID"));
+			UVO.setPW(request.getParameter("PW"));
+		}
 		if (UDAO.loginCheck(UVO)) {
 			session.setAttribute("ID", UVO.getID());
 			session.setAttribute("PW", UVO.getPW());
@@ -52,11 +52,21 @@
 	} else if (action.equals("find")) {
 		String index = request.getParameter("index");
 		ArrayList<PostVO> datas = PDAO.findPost(index);
-		for(PostVO vo : datas){
+		for (PostVO vo : datas) {
 			System.out.println(vo);
 		}
 		request.setAttribute("datas", datas);
 		pageContext.forward("template_list.jsp");
+	} else if (action.equals("joinUS")) { // 회원가입
+		String ID = request.getParameter("ID");
+		String PW = request.getParameter("PW");
+		String PWPW = request.getParameter("PWPW");
+		if (PW.equals(PWPW)) {
+			UVO.setID(request.getParameter("ID"));
+			UVO.setPW(PW);
+			UDAO.JoinUs(UVO); //DB업데이트
+			response.sendRedirect("control.jsp?action=login");
+		}
 	}
 %>
 <!DOCTYPE html>
