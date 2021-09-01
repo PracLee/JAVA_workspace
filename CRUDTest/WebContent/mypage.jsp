@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>글 목록</title>
+<title>내가 쓴 글 보기</title>
 </head>
 <body>
 	<table border="1">
@@ -31,24 +31,5 @@
 			}
 		%>
 	</table>
-	<form action="control.jsp?action=find" method="post">
-		<input type="text" name="index"> <input type="submit"
-			value="검색">
-	</form>
-	<%
-		if (session.getAttribute("ID")==null) {
-	%>
-	<a href="login.jsp">로그인</a>
-	<a href="joinUs.jsp">회원가입</a>
-	<%
-		} else {
-	%>
-	<a href="post.jsp">글쓰기</a>
-	<a href="control.jsp?action=mypage">내가 쓴 글 보기</a>
-	<a href="control.jsp?action=logout">로그아웃</a>
-	<%
-		}
-	%>
-
 </body>
 </html>

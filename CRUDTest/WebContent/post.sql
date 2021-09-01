@@ -1,6 +1,10 @@
 insert into userInfo values ('admin','1234','1');
+insert into userInfo values ('test','1234','0');
 insert into post values('0','admin','공지사항','공지사항테스트입니다.',sysdate);
-
+insert into post values('1','admin','a','공지사항테스트입니다.',sysdate);
+insert into post values('2','admin','bbb','공지사항테스트입니다.',sysdate);
+select * from post where ID='admin' order by postnum desc;
+select * from post where title like '공%';
 select * from all_tables;
 select * from post;
 select * from userInfo;
