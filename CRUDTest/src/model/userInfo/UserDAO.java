@@ -47,6 +47,7 @@ public class UserDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, UVO.getID());
 			pstmt.setString(2, UVO.getPW());
+			pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("JoinUs()에서 출력");
 			e.printStackTrace();
