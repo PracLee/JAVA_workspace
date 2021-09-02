@@ -61,11 +61,18 @@
 		String ID = request.getParameter("ID");
 		String PW = request.getParameter("PW");
 		String PWPW = request.getParameter("PWPW");
+		System.out.println("패스워드 체크 전");
 		if (PW.equals(PWPW)) {
 			UVO.setID(request.getParameter("ID"));
 			UVO.setPW(PW);
 			UDAO.JoinUs(UVO); //DB업데이트
-			response.sendRedirect("control.jsp?action=login");
+			session.setAttribute("ID", ID);
+			session.setAttribute("PW", PW);
+			System.out.println("패스워드 체크 후");
+			response.sendRedirect("index.jsp");
+		}else{
+			out.println("<script>alert('비밀번호가 일치하지 않습니다.');");
+			out.println("document.location.href='joinus.jsp'</script>");
 		}
 	}
 %>
