@@ -27,13 +27,13 @@
 			out.println("글작성중 오류발생!");
 		}
 	} else if (action.equals("login")) {
-		if (UVO.getID().equals("")||UVO.getPW().equals("")) {
-			UVO.setID(request.getParameter("ID"));
-			UVO.setPW(request.getParameter("PW"));
-		}
+		UVO.setID(request.getParameter("ID"));
+		UVO.setPW(request.getParameter("PW"));
+		System.out.println(UVO);
 		if (UDAO.loginCheck(UVO)) {
 			session.setAttribute("ID", UVO.getID());
 			session.setAttribute("PW", UVO.getPW());
+			System.out.println("로그인 성공");
 			System.out.println(session.getAttribute("ID"));
 			response.sendRedirect("index.jsp");
 		} else {
@@ -70,7 +70,7 @@
 			session.setAttribute("PW", PW);
 			System.out.println("패스워드 체크 후");
 			response.sendRedirect("index.jsp");
-		}else{
+		} else {
 			out.println("<script>alert('비밀번호가 일치하지 않습니다.');");
 			out.println("document.location.href='joinus.jsp'</script>");
 		}

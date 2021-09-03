@@ -21,11 +21,5 @@
 	</table>
 </form>
 <%
-	} else {
-%>
-<form action="ctrl.jsp">
-	<input type="submit" value="로그아웃">
-</form>
-<%
 	}
 %>

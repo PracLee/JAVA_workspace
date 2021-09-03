@@ -4,6 +4,7 @@
 	request.setCharacterEncoding("UTF-8");
 %>
 <jsp:useBean id="datas" class="java.util.ArrayList" scope="request" />
+<%@ taglib tagdir="/WEB-INF/tags" prefix="log"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,20 +36,8 @@
 		<input type="text" name="index"> <input type="submit"
 			value="검색">
 	</form>
-	<%
-		if (session.getAttribute("ID")==null) {
-	%>
-	<a href="login.jsp">로그인</a>
-	<a href="joinUs.jsp">회원가입</a>
-	<%
-		} else {
-	%>
-	<a href="post.jsp">글쓰기</a>
-	<a href="control.jsp?action=mypage">내가 쓴 글 보기</a>
-	<a href="control.jsp?action=logout">로그아웃</a>
-	<%
-		}
-	%>
+	<log:login/>
+	<log:logout/>
 
 </body>
 </html>

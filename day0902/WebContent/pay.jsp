@@ -8,6 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<pay:pay product="${param.product }" many="${param.many }"/>
+<pay:pay product="${param.product }" many="${param.many }" color="red" fontSize="66px" >메세지를 넣었다</pay:pay>
 </body>
 </html>

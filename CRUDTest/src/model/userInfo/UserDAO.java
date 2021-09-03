@@ -10,7 +10,6 @@ import model.common.JDBC;
 public class UserDAO {
 	public boolean loginCheck(UserVO UVO) { // select all
 		Connection conn = JDBC.connect();
-		UserVO data = new UserVO();
 		ArrayList<UserVO> datas = new ArrayList<UserVO>();
 		PreparedStatement pstmt = null;
 		boolean res=false;	// 로그인 유무 체크
@@ -18,16 +17,20 @@ public class UserDAO {
 			String sql = "select * from userInfo"; // 최근 게시글 상단 배치
 			pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
+			System.out.println("1번");
 			while (rs.next()) {
+				UserVO data = new UserVO();
+				System.out.println("2번");
 				data.setID(rs.getString("ID"));
 				data.setPW(rs.getString("PW"));
 				datas.add(data);
 			}
 			rs.close();
 			for(int i=0;i<datas.size();i++) {
-				if(datas.get(i).getID().equals(UVO.getID())&&datas.get(i).getPW().equals(UVO.getPW())) {
+				System.out.println(datas.get(i));
+				if(UVO.getID().equals(datas.get(i).getID())&&UVO.getPW().equals(datas.get(i).getPW())) {
 					res=true;
-					break;
+					return res;
 				}
 			}
 		} catch (Exception e) {
