@@ -20,7 +20,8 @@
 		입니다.
 	</p>
 	<p>고객님이 쓴 글 정보입니다.</p>
-	<form action ="control.jsp?action=updatePost" method="post">
+	<form action ="control.jsp" method="post">
+	<input type="hidden" name="action" value ="updateP" >
 	<table>
 		<%
 		System.out.println("mypage도착");

@@ -25,7 +25,7 @@ public class PostDAO {
 				PostVO vo = new PostVO();
 				vo.setContent(rs.getString("content"));
 				vo.setTitle(rs.getString("title"));
-				vo.setID((rs.getString("id")));
+				vo.setID((rs.getString("ID")));
 				vo.setPostNum(rs.getInt("postnum"));
 				dateOrigin = rs.getDate("postdate");
 				dateToStr = dateFix.format(dateOrigin);

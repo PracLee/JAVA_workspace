@@ -13,6 +13,7 @@
 
 <%
 	String action = request.getParameter("action");
+	System.out.println(action);
 	if (action.equals("main")) {
 		pageContext.forward("main.jsp");
 	} else if (action.equals("login")) {
@@ -76,8 +77,8 @@
 		PVO.setID((String) session.getAttribute("ID"));
 		PDAO.updatePost(PVO);
 		pageContext.forward("index.jsp");
-	} else if (action.equals("updatePost")) {
-		System.out.println("컨트롤러 도착");
+	} else if (action.equals("updateP")) {
+		System.out.println("updateP 도착");
 		PVO.setContent(request.getParameter("content"));
 		PVO.setID((String)session.getAttribute("ID"));
 		PVO.setPostDate(request.getParameter("PostDate"));
@@ -85,7 +86,7 @@
 		PVO.setTitle(request.getParameter("title"));
 		request.setAttribute("PVO", PVO);
 		System.out.println("edit로 간다");
-		response.sendRedirect("editPost.jsp");
+		pageContext.forward("editPost.jsp");
 	} else if(action.equals("DeletePost")){
 		PDAO.deletePost(PVO);
 		pageContext.forward("index.jsp");
