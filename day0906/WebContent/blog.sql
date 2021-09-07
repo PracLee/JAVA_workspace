@@ -12,6 +12,6 @@ ID varchar(20),
 postDate date default sysdate,
 foreign key (id) references userInfo(id) on delete cascade
 );
-insert into USERINFO values ('admin','1234');
+insert into USERINFO values ('test','1234');
 select * from USERINFO;
 select * from POST;

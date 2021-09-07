@@ -75,4 +75,22 @@ public class UserDAO {
 		}
 		return;
 	}
+	public void JoinUs(UserVO UVO) {
+		Connection conn = JDBC.connect();
+		PreparedStatement pstmt = null;
+		try {
+			String sql = "insert into USERINFO values (?,?)"; // 최근 게시글 상단 배치
+			pstmt = conn.prepareStatement(sql);	
+			pstmt.setString(1, UVO.getID());
+			pstmt.setString(2, UVO.getPW());
+			pstmt.executeUpdate();
+			System.out.println(UVO+"ID정보 입력 완료");
+		} catch (Exception e) {
+			System.out.println("JoinUs()에서 출력");
+			e.printStackTrace();
+		} finally {
+			JDBC.disconnect(pstmt, conn);
+		}
+		return;
+	}
 }

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import model.common.JDBC;
+import model.user.UserVO;
 
 public class PostDAO {
 	public ArrayList<PostVO> showPostList(){
@@ -117,6 +118,38 @@ public class PostDAO {
 				dateToStr = dateFix.format(dateOrigin);
 				data.setPostDate(dateToStr);
 				System.out.println(data);
+				datas.add(data);
+			}
+			rs.close();
+		} catch (Exception e) {
+			System.out.println("showMyList()에서 출력");
+			e.printStackTrace();
+		} finally {
+			JDBC.disconnect(pstmt, conn);
+		}
+		return datas;
+	}
+	public ArrayList<PostVO> findPost(String str) {
+		Connection conn = JDBC.connect();
+		ArrayList<PostVO> datas = new ArrayList();
+		PreparedStatement pstmt = null;
+		try {
+			String sql = "select * from post where title like ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+str + "%");
+			ResultSet rs = pstmt.executeQuery();
+			Date dateOrigin;
+			String dateToStr;
+			SimpleDateFormat dateFix = new SimpleDateFormat("yyyy-MM-dd");
+			while (rs.next()) {
+				PostVO data = new PostVO();
+				data.setContent(rs.getString("content"));
+				data.setTitle(rs.getString("title"));
+				data.setID(rs.getString("ID"));
+				data.setPostNum(rs.getInt("postNum"));
+				dateOrigin = rs.getDate("postDate");
+				dateToStr = dateFix.format(dateOrigin);
+				data.setPostDate(dateToStr);
 				datas.add(data);
 			}
 			rs.close();

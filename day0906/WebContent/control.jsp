@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import ="java.util.ArrayList, model.post.*"%>
+	pageEncoding="UTF-8" import="java.util.ArrayList, model.post.*"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
@@ -38,6 +38,18 @@
 			out.println("<script>alert('회원정보가 일치하지 않습니다!')");
 			out.println("document.location.href='mypage.jsp'</script>");
 		}
+	} else if (action.equals("JoinUS")) {
+		String ID = request.getParameter("ID");
+		String PW = request.getParameter("PW");
+		System.out.println("패스워드 체크 전");
+		UVO.setID(request.getParameter("ID"));
+		UVO.setPW(PW);
+		UDAO.JoinUs(UVO); //DB업데이트
+		session.setAttribute("ID", ID);
+		session.setAttribute("PW", PW);
+		System.out.println("패스워드 체크 후");
+		response.sendRedirect("index.jsp");
+
 	} else if (action.equals("update")) {
 		UVO.setID((String) session.getAttribute("ID"));
 		UVO.setPW(request.getParameter("PW"));
@@ -46,15 +58,14 @@
 	} else if (action.equals("logout")) {
 		session.invalidate();
 		pageContext.forward("index.jsp");
-	}else if(action.equals("mypage")){
-		String ID = (String)session.getAttribute("ID");	
-		String PW = (String)session.getAttribute("PW");	
+	} else if (action.equals("mypage")) {
+		String ID = (String) session.getAttribute("ID");
+		String PW = (String) session.getAttribute("PW");
 		PVO.setID((String) session.getAttribute("ID"));
 		ArrayList<PostVO> datas = PDAO.whoWriter(PVO);
 		request.setAttribute("datas", datas);
 		pageContext.forward("mypage.jsp");
-	}
-	else if (action.equals("delete")) {
+	} else if (action.equals("delete")) {
 		UVO.setID((String) session.getAttribute("ID"));
 		UDAO.delete(UVO);
 		pageContext.forward("index.jsp");
@@ -80,19 +91,35 @@
 	} else if (action.equals("updateP")) {
 		System.out.println("updateP 도착");
 		PVO.setContent(request.getParameter("content"));
-		PVO.setID((String)session.getAttribute("ID"));
+		PVO.setID((String) session.getAttribute("ID"));
 		PVO.setPostDate(request.getParameter("PostDate"));
 		PVO.setPostNum(Integer.parseInt(request.getParameter("PostNum")));
 		PVO.setTitle(request.getParameter("title"));
-		request.setAttribute("PVO", PVO);
-		System.out.println("edit로 간다");
+		session.setAttribute("PVO", PVO);
+		System.out.println("updateP의 " + PVO);
 		pageContext.forward("editPost.jsp");
-	} else if(action.equals("DeletePost")){
+	} else if (action.equals("DeletePost")) {
+		PVO.setContent(request.getParameter("content"));
+		PVO.setID((String) session.getAttribute("ID"));
+		PVO.setPostDate(request.getParameter("PostDate"));
+		PVO.setPostNum(Integer.parseInt(request.getParameter("PostNum")));
+		PVO.setTitle(request.getParameter("title"));
 		PDAO.deletePost(PVO);
 		pageContext.forward("index.jsp");
-	} else if(action.equals("updatePostDB")){
+	} else if (action.equals("PostUDB")) {
+		PVO.setContent(request.getParameter("content"));
+		PVO.setID((String) session.getAttribute("ID"));
+		PVO.setPostDate(request.getParameter("PostDate"));
+		PVO.setPostNum(Integer.parseInt(request.getParameter("PostNum")));
+		PVO.setTitle(request.getParameter("title"));
+		System.out.println(PVO);
 		PDAO.updatePost(PVO);
 		pageContext.forward("index.jsp");
+	} else if (action.equals("findOne")) {
+		String str = request.getParameter("query");
+		ArrayList<PostVO> datas = PDAO.findPost(str);
+		request.setAttribute("datas", datas);
+		pageContext.forward("findList.jsp");
 	}
 %>
 <!DOCTYPE html>

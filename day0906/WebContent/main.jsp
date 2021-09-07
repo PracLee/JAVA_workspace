@@ -47,9 +47,6 @@ https://templatemo.com/tm-553-xtra-blog
 					<li class="tm-nav-item active"><a href="index.jsp"
 						class="tm-nav-link"> <i class="fas fa-home"></i> Blog Home
 					</a></li>
-					<li class="tm-nav-item"><a href="post.html"
-						class="tm-nav-link"> <i class="fas fa-pen"></i> Single Post
-					</a></li>
 					<li class="tm-nav-item"><a href="insertPost.jsp"
 						class="tm-nav-link"> <i class="fas fa-users"></i> New Post
 					</a></li>
@@ -84,7 +81,7 @@ https://templatemo.com/tm-553-xtra-blog
 		<main class="tm-main"> <!-- Search form -->
 		<div class="row tm-row">
 			<div class="col-12">
-				<form method="GET" class="form-inline tm-mb-80 tm-search-form">
+				<form method="post" class="form-inline tm-mb-80 tm-search-form" action="control.jsp?action=findOne">
 					<input class="form-control tm-search-input" name="query"
 						type="text" placeholder="Search..." aria-label="Search">
 					<button class="tm-search-button" type="submit">
