@@ -22,8 +22,7 @@ public class CommentDAO {
 		PreparedStatement pstmt = null;
 		ArrayList<CommentVO> datas = new ArrayList<CommentVO>();
 		try {
-			DataSource ds = DBCP.connect();
-			conn = ds.getConnection();
+			conn = DBCP.connect();
 			pstmt = conn.prepareStatement(sql_selectAll);
 			pstmt.executeUpdate();
 			ResultSet rs = pstmt.executeQuery();
@@ -51,8 +50,7 @@ public class CommentDAO {
 		PreparedStatement pstmt = null;
 		ArrayList<CommentVO> datas = new ArrayList<CommentVO>();
 		try {
-			DataSource ds = DBCP.connect();
-			conn = ds.getConnection();
+			conn = DBCP.connect();
 			pstmt = conn.prepareStatement(sql_selectOne);
 			pstmt.setString(1, CVO.getID());
 			pstmt.executeUpdate();
@@ -79,8 +77,7 @@ public class CommentDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
-			DataSource ds = DBCP.connect();
-			conn = ds.getConnection();
+			conn = DBCP.connect();
 			pstmt = conn.prepareStatement(sql_insert);
 			pstmt.setString(1, CVO.getCom());
 			pstmt.setString(2, CVO.getID());
@@ -98,8 +95,7 @@ public class CommentDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
-			DataSource ds = DBCP.connect();
-			conn = ds.getConnection();
+			conn = DBCP.connect();
 			pstmt = conn.prepareStatement(sql_update);
 			pstmt.setString(1, CVO.getCom());
 			pstmt.setInt(2, CVO.getcNum());
@@ -116,8 +112,7 @@ public class CommentDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
-			DataSource ds = DBCP.connect();
-			conn = ds.getConnection();
+			conn = DBCP.connect();
 			pstmt = conn.prepareStatement(sql_delete);
 			pstmt.setInt(1, CVO.getcNum());
 			pstmt.executeUpdate();

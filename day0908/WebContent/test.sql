@@ -17,3 +17,19 @@ PW varchar(30) not null
 );
 insert into ctable values(1, '테스트입니다', 'admin','1234');
 select * from ctable order by cNum;
+
+
+create table bank1(
+   bid int primary key,
+    name varchar(20),
+    balance int
+);
+create table bank2(
+   bid int primary key,
+    name varchar(20),
+    balance int
+);
+insert into bank1 values(1001,'아무무',5000);
+insert into bank2 values(2001,'티모',1000);
+select * from bank1;
+select * from bank2;
