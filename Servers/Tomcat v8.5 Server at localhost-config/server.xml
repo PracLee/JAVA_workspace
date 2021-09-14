@@ -153,7 +153,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="TP_4GroupTuna" path="/TP_4GroupTuna" reloadable="true" source="org.eclipse.jst.jee.server:TP_4GroupTuna"/><Context docBase="day0909" path="/day0909" reloadable="true" source="org.eclipse.jst.jee.server:day0909"/><Context docBase="ELFTSRVTest" path="/ELFTSRVTest" reloadable="true" source="org.eclipse.jst.jee.server:ELFTSRVTest"/></Host>
+      <Context docBase="TP_4GroupTuna" path="/TP_4GroupTuna" reloadable="true" source="org.eclipse.jst.jee.server:TP_4GroupTuna"/><Context docBase="day0909" path="/day0909" reloadable="true" source="org.eclipse.jst.jee.server:day0909"/><Context docBase="ELFTSRVTest" path="/ELFTSRVTest" reloadable="true" source="org.eclipse.jst.jee.server:ELFTSRVTest"/><Context docBase="CRUDTest" path="/CRUDTest" reloadable="true" source="org.eclipse.jst.jee.server:CRUDTest"/><Context docBase="day0908" path="/day0908" reloadable="true" source="org.eclipse.jst.jee.server:day0908"/><Context docBase="comment" path="/comment" reloadable="true" source="org.eclipse.jst.jee.server:comment"/></Host>
     </Engine>
   </Service>
 </Server>

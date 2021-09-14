@@ -8,8 +8,9 @@ select * from post where title like '°ø%';
 select * from all_tables;
 select * from post;
 select * from userInfo;
-
-
+drop table userinfo;
+drop table post;
+drop table reply;
 create table userInfo(
 	id varchar(20) primary key,
 	pw varchar(40) not null,
@@ -26,4 +27,12 @@ create table post(
 	content varchar(1000),
 	postDate date default sysdate,
 	foreign key (id) references userInfo(id) on delete cascade
+);
+
+create table reply(
+	rNum int primary key,
+	postNum int,
+	reply varchar(300),
+	replydate date default sysdate,
+	foreign key (postNum) references post(postNum) on delete cascade
 );

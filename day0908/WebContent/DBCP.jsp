@@ -41,19 +41,39 @@
 			<th>수정·삭제하려면 비밀번호를 입력해주세요!</th>
 			<th>수정·삭제</th>
 		</tr>
-		<c:forEach var="v" items="${datas }">
+		<c:forEach var="cr" items="${datas }">
 			<form action="ctrl.jsp?action=IDPWcheck" method="post">
-			<tr>
-				<td>${v.cNum }</td>
-				<td>${v.com }</td>
-				<td>${v.ID }</td>
-				<td><input type="password" placeholder="수정·삭제하려면 비밀번호를 입력해주세요!"
-					name="PWcheck"></td>
-				<td><input type="submit" value="수정·삭제"></td>
-				<input type="hidden" value="${v.cNum }" name="cNum">
-				<input type="hidden" value="${v.com }" name="com">
-				<input type="hidden" value="${v.PW }" name="PW">
-			</tr>
+				<tr>
+					<td>${cr.c.cNum }</td>
+					<td>${cr.c.com }</td>
+					<td>${cr.c.ID }</td>
+					<td><input type="password"
+						placeholder="수정·삭제하려면 비밀번호를 입력해주세요!" name="PWcheck"></td>
+					<td><input type="submit" value="수정·삭제"></td>
+					<input type="hidden" value="${cr.c.cNum }" name="cNum">
+					<input type="hidden" value="${cr.c.com }" name="com">
+					<input type="hidden" value="${cr.c.PW }" name="PW">
+				</tr>
+			</form>
+			<c:forEach var="rList" items="${cr.rList}">
+				<form aciton="ctrl.jsp?action=updateReply" method="post">
+				<tr>
+					<td></td>
+					<td>↳</td>
+					<td>${rList.rid }</td>
+					<td>${rList.rom }</td>
+					<td><input type="submit" value="수정·삭제">
+				</tr>
+				</form>
+			</c:forEach>
+			<form action="ctrl.jsp?action=insertReply" method="post">
+				<tr>
+					<td></td>
+					<td><input type="text" placeholder="댓글 입력" name="rom"></td>
+					<td><input type="text" placeholder="작성자 입력" name="rid"></td>
+					<input type="hidden" value="${cr.c.cNum }" name="cnum">
+					<td><input type="submit" value="댓글입력"></td>
+				</tr>
 			</form>
 		</c:forEach>
 	</table>

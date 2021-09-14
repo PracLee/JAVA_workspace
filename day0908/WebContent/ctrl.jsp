@@ -3,10 +3,23 @@
     <%request.setCharacterEncoding("UTF-8"); %>
     <jsp:useBean id="CVO" class="model.CommentVO"/>
     <jsp:useBean id="CDAO" class="model.CommentDAO"/>
+    <jsp:useBean id="RVO" class="model.ReplyVO"/>
+    <jsp:useBean id="RDAO" class="model.ReplyDAO"/>
+    <jsp:useBean id="CR" class="model.CommentReply"/>
     <%
     String action = request.getParameter("action");
+    
     if (action.equals("goMain")){
-    	request.setAttribute("datas", CDAO.selectAll());
+    	ArrayList<CommentReply> datas = new ArrayList<CommentReply>();
+    	ArrayList<CommentVO> Cdata = CDAO.selectAll();
+    	for(int i=0;i<Cdata.size();i++){
+    		ArrayList<ReplyVO> Rdata = RDAO.selectAll(Cdata.get(i).getcNum());	// 댓글 개수 가져오기
+			CommentReply cr = new CommentReply();
+    		cr.setC(Cdata.get(i));
+    		cr.setrList(Rdata);
+    		datas.add(cr);
+    	}
+    	request.setAttribute("datas", datas);
     	pageContext.forward("DBCP.jsp");
     }else if(action.equals("insert")){
     	CVO.setCom(request.getParameter("com"));
@@ -40,6 +53,28 @@
     	request.setAttribute("datas", CDAO.selectOne(CVO));
     	request.setAttribute("ID", CVO.getID());
     	pageContext.forward("findList.jsp");
+    }else if(action.equals("insertReply")){
+    	RVO.setRid(request.getParameter("rid"));
+    	RVO.setCnum(Integer.parseInt(request.getParameter("cnum")));
+    	RVO.setRom(request.getParameter("rom"));
+    	RDAO.insert(RVO);
+    	pageContext.forward("index.jsp");
+    }else if(action.equals("updateReply")){
+    	RVO.setRid(request.getParameter("rid"));
+    	RVO.setCnum(Integer.parseInt(request.getParameter("cnum")));
+    	RVO.setRom(request.getParameter("rom"));
+    	RVO = RDAO.selectOne(RVO);
+    	request.setAttribute("RVO", RVO);
+    	pageContext.forward("reEdit.jsp");
+    }else if (action.equals("reupdate")){
+    	RVO.setRnum(Integer.parseInt(request.getParameter("rnum")));
+    	RVO.setRom(request.getParameter("rom"));
+    	RDAO.update(RVO);
+    	pageContext.forward("index.jsp");
+    }else if (action.equals("redelete")){
+    	CVO.setcNum(Integer.parseInt(request.getParameter("rnum")));
+    	RDAO.delete(RVO);
+    	pageContext.forward("index.jsp");
     }
    
     %>

@@ -20,8 +20,6 @@ public class PostDAO {
 			String sql = "select * from post order by postnum desc"; // 최근 게시글 상단 배치
 			pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
-			Date dateOrigin;
-			String dateToStr;
 			SimpleDateFormat dateFix = new SimpleDateFormat("yyyy-MM-dd");
 			while (rs.next()) {
 				PostVO vo = new PostVO();
@@ -29,8 +27,8 @@ public class PostDAO {
 				vo.setTitle(rs.getString("title"));
 				vo.setId(rs.getString("id"));
 				vo.setPostnum(rs.getInt("postnum"));
-				dateOrigin = rs.getDate("postdate");
-				dateToStr = dateFix.format(dateOrigin);
+				Date dateOrigin = rs.getDate("postdate");
+				String dateToStr = dateFix.format(dateOrigin);
 				vo.setPostdate(dateToStr);
 				datas.add(vo);
 			}
