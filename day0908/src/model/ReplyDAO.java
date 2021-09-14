@@ -45,6 +45,7 @@ public class ReplyDAO {
 	}
 	
 	public ArrayList<ReplyVO> selectAll(int cnum) {
+		//		String sql_selectAll = "select * from reply where cnum = ? order by rNum";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ArrayList<ReplyVO> datas = new ArrayList<ReplyVO>();

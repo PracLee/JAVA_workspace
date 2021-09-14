@@ -27,3 +27,4 @@ insert into ctable values(1, '테스트입니다', 'admin','1234');
 insert into REPLY values(1,'admin',1,'1번 대댓글');
 insert into REPLY values(2,'admin',1,'2번 대댓글');
 select * from ctable order by cNum;
+select * from reply where rownum <= 2;

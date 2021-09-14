@@ -8,10 +8,17 @@
     <jsp:useBean id="CR" class="model.CommentReply"/>
     <%
     String action = request.getParameter("action");
-    
+	String url="ctrl.jsp?action=goMain";	
+	String mcntt=request.getParameter("mcnt");
+	int mcnt=1;
+	if(mcntt!=null){
+		mcnt=Integer.parseInt(mcntt);
+	}
+	url= url+ "&mcnt="+mcnt;
+	
     if (action.equals("goMain")){
     	ArrayList<CommentReply> datas = new ArrayList<CommentReply>();
-    	ArrayList<CommentVO> Cdata = CDAO.selectAll();
+    	ArrayList<CommentVO> Cdata = CDAO.selectAll(mcnt);
     	for(int i=0;i<Cdata.size();i++){
     		ArrayList<ReplyVO> Rdata = RDAO.selectAll(Cdata.get(i).getcNum());	// 댓글 개수 가져오기
 			CommentReply cr = new CommentReply();
@@ -19,6 +26,7 @@
     		cr.setrList(Rdata);
     		datas.add(cr);
     	}
+    	request.setAttribute("mcnt", mcnt);
     	request.setAttribute("datas", datas);
     	pageContext.forward("DBCP.jsp");
     }else if(action.equals("insert")){
@@ -26,7 +34,7 @@
     	CVO.setID(request.getParameter("ID"));
     	CVO.setPW(request.getParameter("PW"));
     	CDAO.insert(CVO);
-    	pageContext.forward("index.jsp");
+    	response.sendRedirect(url);
     }else if (action.equals("IDPWcheck")){
     	System.out.println("PW : "+request.getParameter("PW"));
     	System.out.println("Pcheck : "+request.getParameter("PWcheck"));
@@ -43,11 +51,11 @@
     	CVO.setcNum(Integer.parseInt(request.getParameter("cNum")));
     	CVO.setCom(request.getParameter("com"));
     	CDAO.update(CVO);
-    	pageContext.forward("index.jsp");
+    	response.sendRedirect(url);
     }else if (action.equals("delete")){
     	CVO.setcNum(Integer.parseInt(request.getParameter("cNum")));
     	CDAO.delete(CVO);
-    	pageContext.forward("index.jsp");
+    	response.sendRedirect(url);
     }else if(action.equals("find")){
     	CVO.setID(request.getParameter("ID"));
     	request.setAttribute("datas", CDAO.selectOne(CVO));
@@ -58,14 +66,15 @@
     	RVO.setCnum(Integer.parseInt(request.getParameter("cnum")));
     	RVO.setRom(request.getParameter("rom"));
     	RDAO.insert(RVO);
-    	pageContext.forward("index.jsp");
-    }else if(action.equals("updateReply")){
+    	response.sendRedirect(url);
+    }else if(action.equals("upply")){
+    	System.out.println("여기들어오니?");
     	RVO.setRid(request.getParameter("rid"));
     	RVO.setCnum(Integer.parseInt(request.getParameter("cnum")));
     	RVO.setRom(request.getParameter("rom"));
     	RVO = RDAO.selectOne(RVO);
     	request.setAttribute("RVO", RVO);
-    	pageContext.forward("reEdit.jsp");
+    	response.sendRedirect("reEdit.jsp");
     }else if (action.equals("reupdate")){
     	RVO.setRnum(Integer.parseInt(request.getParameter("rnum")));
     	RVO.setRom(request.getParameter("rom"));
@@ -74,7 +83,7 @@
     }else if (action.equals("redelete")){
     	CVO.setcNum(Integer.parseInt(request.getParameter("rnum")));
     	RDAO.delete(RVO);
-    	pageContext.forward("index.jsp");
+    	response.sendRedirect(url);
     }
    
     %>

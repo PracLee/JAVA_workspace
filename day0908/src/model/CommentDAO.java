@@ -11,19 +11,21 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 public class CommentDAO {
-	String sql_selectAll = "select * from ctable order by cNum";
+	String sql_selectAll = "select * from ctable where rownum <= ?  order by cNum";
 	String sql_selectOne = "select * from ctable where ID = ? order by cNum";
 	String sql_update = "update ctable set com = ? where cNum = ?";
 	String sql_delete = "delete from ctable where cNum = ?";
 	String sql_insert = "insert into ctable values ((SELECT NVL(MAX(cNum),0) + 1 FROM ctable),?,?,?)";
 
-	public ArrayList<CommentVO> selectAll() {
+	public ArrayList<CommentVO> selectAll(int cnt) {
+		//	String sql_selectAll = "select * from ctable where rownum <= ?  order by cNum";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ArrayList<CommentVO> datas = new ArrayList<CommentVO>();
 		try {
 			conn = DBCP.connect();
 			pstmt = conn.prepareStatement(sql_selectAll);
+			pstmt.setInt(1, cnt);
 			pstmt.executeUpdate();
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {

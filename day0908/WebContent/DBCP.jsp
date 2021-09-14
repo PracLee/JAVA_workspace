@@ -56,15 +56,20 @@
 				</tr>
 			</form>
 			<c:forEach var="rList" items="${cr.rList}">
-				<form aciton="ctrl.jsp?action=updateReply" method="post">
+
 				<tr>
+					<form aciton="ctrl.jsp?action=upply" method="post">
 					<td></td>
 					<td>↳</td>
 					<td>${rList.rid }</td>
 					<td>${rList.rom }</td>
-					<td><input type="submit" value="수정·삭제">
+					<input type="hidden" name="rid" value="${rList.rid }">
+					<input type="hidden" name="rom" value="${rList.rom }">
+					<input type="hidden" name="cnum" value="${rList.cnum }">
+					<td><input type="submit" value="수정·삭제"></td>
+					</form>
 				</tr>
-				</form>
+
 			</c:forEach>
 			<form action="ctrl.jsp?action=insertReply" method="post">
 				<tr>
@@ -76,6 +81,12 @@
 				</tr>
 			</form>
 		</c:forEach>
+		<tr>
+			<td><a href="ctrl.jsp?action=goMain&mcnt=${mcnt+1}">더보기&gt;&gt;</a>
+			</td>
+		</tr>
+
+
 	</table>
 </body>
 </html>
