@@ -14,6 +14,7 @@
 		<table>
 			<tr>
 				<td><input type="text" name="com" value="${com }"></td>
+				<input type="hidden" name="mcnt" value="${mcnt }">
 				<input type="hidden" value="${cNum }" name="cNum">
 				<td><input type="submit" value="내용 수정!"></td>
 			</tr>
@@ -22,6 +23,7 @@
 	<hr>
 	<form action="ctrl.jsp?action=delete" method="post">
 		<input type="hidden" value="${cNum }" name="cNum"> <input
+			type="hidden" name="mcnt" value="${mcnt }"> <input
 			type="submit" value="댓글 삭제!">
 	</form>
 </body>

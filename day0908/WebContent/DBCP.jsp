@@ -20,6 +20,7 @@
 				<td><input type="password" name="PW" placeholder="PW입력">
 				</td>
 				<td><input type="submit" value="댓글입력하기!"></td>
+				<input type="hidden" name="mcnt" value="${mcnt }">
 			</tr>
 		</table>
 		<hr>
@@ -44,32 +45,33 @@
 		<c:forEach var="cr" items="${datas }">
 			<form action="ctrl.jsp?action=IDPWcheck" method="post">
 				<tr>
-					<td>${cr.c.cNum }</td>
-					<td>${cr.c.com }</td>
-					<td>${cr.c.ID }</td>
+					<th>${cr.c.cNum }</th>
+					<th>${cr.c.com }</th>
+					<th>${cr.c.ID }</th>
 					<td><input type="password"
 						placeholder="수정·삭제하려면 비밀번호를 입력해주세요!" name="PWcheck"></td>
 					<td><input type="submit" value="수정·삭제"></td>
 					<input type="hidden" value="${cr.c.cNum }" name="cNum">
 					<input type="hidden" value="${cr.c.com }" name="com">
 					<input type="hidden" value="${cr.c.PW }" name="PW">
+					<input type="hidden" name="mcnt" value="${mcnt }">
 				</tr>
 			</form>
 			<c:forEach var="rList" items="${cr.rList}">
-
+				<form action="ctrl.jsp?action=upply" method="post">
 				<tr>
-					<form aciton="ctrl.jsp?action=upply" method="post">
 					<td></td>
 					<td>↳</td>
 					<td>${rList.rid }</td>
 					<td>${rList.rom }</td>
+					<input type="hidden" name="rnum" value="${rList.rnum }">
 					<input type="hidden" name="rid" value="${rList.rid }">
 					<input type="hidden" name="rom" value="${rList.rom }">
 					<input type="hidden" name="cnum" value="${rList.cnum }">
+					<input type="hidden" name="mcnt" value="${mcnt }">
 					<td><input type="submit" value="수정·삭제"></td>
-					</form>
 				</tr>
-
+				</form>
 			</c:forEach>
 			<form action="ctrl.jsp?action=insertReply" method="post">
 				<tr>
@@ -77,6 +79,7 @@
 					<td><input type="text" placeholder="댓글 입력" name="rom"></td>
 					<td><input type="text" placeholder="작성자 입력" name="rid"></td>
 					<input type="hidden" value="${cr.c.cNum }" name="cnum">
+					<input type="hidden" name="mcnt" value="${mcnt }">
 					<td><input type="submit" value="댓글입력"></td>
 				</tr>
 			</form>

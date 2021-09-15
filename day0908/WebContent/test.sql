@@ -6,9 +6,11 @@ email varchar(30)
 insert into test values('lee','spsbsc@naver.com');
 insert into test values('ari','ari@naver.com');
 insert into test values('timo','timo@naver.com');
+select * from all_tables;
 select * from REPLY;
 select * from CTABLE;
 drop table cTable;
+drop table reply;
 
 create table cTable(
 cnum int primary key,
@@ -27,4 +29,15 @@ insert into ctable values(1, '테스트입니다', 'admin','1234');
 insert into REPLY values(1,'admin',1,'1번 대댓글');
 insert into REPLY values(2,'admin',1,'2번 대댓글');
 select * from ctable order by cNum;
-select * from reply where rownum <= 2;
+select * from reply;
+select * from ctable where rownum <= 1 order by cNum DESC;
+
+
+
+
+
+
+
+
+
+

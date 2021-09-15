@@ -8,6 +8,7 @@
     <jsp:useBean id="CR" class="model.CommentReply"/>
     <%
     String action = request.getParameter("action");
+    System.out.println(action);
 	String url="ctrl.jsp?action=goMain";	
 	String mcntt=request.getParameter("mcnt");
 	int mcnt=1;
@@ -15,7 +16,7 @@
 		mcnt=Integer.parseInt(mcntt);
 	}
 	url= url+ "&mcnt="+mcnt;
-	
+	request.setAttribute("url", url);
     if (action.equals("goMain")){
     	ArrayList<CommentReply> datas = new ArrayList<CommentReply>();
     	ArrayList<CommentVO> Cdata = CDAO.selectAll(mcnt);
@@ -25,8 +26,10 @@
     		cr.setC(Cdata.get(i));
     		cr.setrList(Rdata);
     		datas.add(cr);
+    		System.out.println(i+"번 대댓글 : "+Rdata);
     	}
-    	request.setAttribute("mcnt", mcnt);
+    	session.setAttribute("mcnt", mcnt);
+		System.out.println("DBCP로 가기직전 datas : "+datas);
     	request.setAttribute("datas", datas);
     	pageContext.forward("DBCP.jsp");
     }else if(action.equals("insert")){
@@ -45,7 +48,7 @@
         	pageContext.forward("edit.jsp");
     	}else{
 			out.println("<script>alert('비밀번호가 일치하지 않습니다!')");
-			out.println("document.location.href='index.jsp'</script>");
+			out.println("history.go(-1)</script>");
     	}
     }else if (action.equals("update")){
     	CVO.setcNum(Integer.parseInt(request.getParameter("cNum")));
@@ -54,6 +57,7 @@
     	response.sendRedirect(url);
     }else if (action.equals("delete")){
     	CVO.setcNum(Integer.parseInt(request.getParameter("cNum")));
+    	RDAO.deleteComment(CVO);
     	CDAO.delete(CVO);
     	response.sendRedirect(url);
     }else if(action.equals("find")){
@@ -68,20 +72,22 @@
     	RDAO.insert(RVO);
     	response.sendRedirect(url);
     }else if(action.equals("upply")){
-    	System.out.println("여기들어오니?");
-    	RVO.setRid(request.getParameter("rid"));
-    	RVO.setCnum(Integer.parseInt(request.getParameter("cnum")));
-    	RVO.setRom(request.getParameter("rom"));
-    	RVO = RDAO.selectOne(RVO);
-    	request.setAttribute("RVO", RVO);
-    	response.sendRedirect("reEdit.jsp");
+    	request.setAttribute("rnum", request.getParameter("rnum"));
+    	request.setAttribute("rom", request.getParameter("rom"));
+    	System.out.println("upply에서 나가기 직전 데이터");
+    	System.out.println("rnum : "+ request.getParameter("rnum"));
+    	System.out.println("rom : "+request.getParameter("rom"));
+    	pageContext.forward("reEdit.jsp");
     }else if (action.equals("reupdate")){
+    	System.out.println("reupdate에서 받은 데이터");
+    	System.out.println("rnum : "+ request.getParameter("rnum"));
+    	System.out.println("rom : "+request.getParameter("rom"));
     	RVO.setRnum(Integer.parseInt(request.getParameter("rnum")));
     	RVO.setRom(request.getParameter("rom"));
     	RDAO.update(RVO);
-    	pageContext.forward("index.jsp");
+    	pageContext.forward(url);
     }else if (action.equals("redelete")){
-    	CVO.setcNum(Integer.parseInt(request.getParameter("rnum")));
+    	RVO.setRnum(Integer.parseInt(request.getParameter("rnum")));
     	RDAO.delete(RVO);
     	response.sendRedirect(url);
     }

@@ -10,6 +10,7 @@ public class ReplyDAO {
 	String sql_selectOne = "select * from reply where cnum = ? and rid = ? and rom=?";
 	String sql_update = "update reply set rom = ? where rNum = ?";
 	String sql_delete = "delete from reply where rNum = ?";
+	String sql_delete_comment = "delete from reply where cNum = ?";
 	String sql_insert = "insert into reply values ((SELECT NVL(MAX(rnum),0) + 1 FROM reply),?,?,?)";
 	
 	public ReplyVO selectOne(ReplyVO RVO) {
@@ -117,6 +118,22 @@ public class ReplyDAO {
 			conn = DBCP.connect();
 			pstmt = conn.prepareStatement(sql_delete);
 			pstmt.setInt(1, RVO.getRnum());
+			pstmt.executeUpdate();
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return;
+	}
+	public void deleteComment(CommentVO CVO) {
+		// 	String sql_delete_comment = "delete from reply where cNum = ?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBCP.connect();
+			pstmt = conn.prepareStatement(sql_delete_comment);
+			pstmt.setInt(1, CVO.getcNum());
 			pstmt.executeUpdate();
 			pstmt.close();
 			conn.close();
