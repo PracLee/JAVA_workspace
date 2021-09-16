@@ -26,10 +26,8 @@
     		cr.setC(Cdata.get(i));
     		cr.setrList(Rdata);
     		datas.add(cr);
-    		System.out.println(i+"번 대댓글 : "+Rdata);
     	}
     	session.setAttribute("mcnt", mcnt);
-		System.out.println("DBCP로 가기직전 datas : "+datas);
     	request.setAttribute("datas", datas);
     	pageContext.forward("DBCP.jsp");
     }else if(action.equals("insert")){
@@ -53,7 +51,7 @@
     }else if (action.equals("update")){
     	CVO.setcNum(Integer.parseInt(request.getParameter("cNum")));
     	CVO.setCom(request.getParameter("com"));
-    	CDAO.update(CVO);
+    	CDAO.update(CVO, action);
     	response.sendRedirect(url);
     }else if (action.equals("delete")){
     	CVO.setcNum(Integer.parseInt(request.getParameter("cNum")));
@@ -70,6 +68,8 @@
     	RVO.setCnum(Integer.parseInt(request.getParameter("cnum")));
     	RVO.setRom(request.getParameter("rom"));
     	RDAO.insert(RVO);
+    	CVO.setcNum(RVO.getCnum());
+    	CDAO.insert(CVO);
     	response.sendRedirect(url);
     }else if(action.equals("upply")){
     	request.setAttribute("rnum", request.getParameter("rnum"));
@@ -89,6 +89,11 @@
     }else if (action.equals("redelete")){
     	RVO.setRnum(Integer.parseInt(request.getParameter("rnum")));
     	RDAO.delete(RVO);
+    	response.sendRedirect(url);
+    }else if (action.equals("likeUp")){
+    	CVO.setcNum(Integer.parseInt(request.getParameter("cNum")));
+    	System.out.println("cNum : "+CVO.getcNum());
+		CDAO.update(CVO, action);
     	response.sendRedirect(url);
     }
    

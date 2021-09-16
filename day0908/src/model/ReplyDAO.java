@@ -46,7 +46,7 @@ public class ReplyDAO {
 	}
 	
 	public ArrayList<ReplyVO> selectAll(int cnum) {
-		//		String sql_selectAll = "select * from reply where cnum = ? order by rNum";
+		//String sql_insert = "insert into reply values ((SELECT NVL(MAX(rnum),0) + 1 FROM reply),?,?,?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ArrayList<ReplyVO> datas = new ArrayList<ReplyVO>();
@@ -62,8 +62,10 @@ public class ReplyDAO {
 				data.setRid(rs.getString("rid"));
 				data.setRnum(rs.getInt("rnum"));
 				data.setRom(rs.getString("rom"));
+				System.out.println(data);
 				datas.add(data);
 			}
+			
 			rs.close();
 			pstmt.close();
 			conn.close();
@@ -93,6 +95,7 @@ public class ReplyDAO {
 		}
 		return;
 	}
+	
 	public void update(ReplyVO RVO) {
 		//	"update reply set rom = ? where rNum = ?";
 		Connection conn = null;

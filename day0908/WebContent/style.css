@@ -1,0 +1,30 @@
+@charset "UTF-8";
+body{
+	margin: 0px;
+	padding: 0px;
+	
+}
+.ad{
+	width: 300px;
+	display: block;
+	height: 200px;
+}
+.ad_img{
+	height: 200px;
+	width:fit-content;
+}
+#adContainer{
+	margin: 3px;
+	border: 1px solid black;
+	height: fit-content;
+	width: 300px;
+	float: right;
+	text-align : center;
+}
+#adContainer p{
+	font-size: 5px;
+}
+#like{
+	text-decoration: none;
+	color: red;
+}

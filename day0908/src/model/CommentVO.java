@@ -5,6 +5,21 @@ public class CommentVO {
 	private String com;
 	private String ID;
 	private String PW;
+	private int replyCnt;
+	private int likeCnt;
+	
+	public int getReplyCnt() {
+		return replyCnt;
+	}
+	public void setReplyCnt(int replyCnt) {
+		this.replyCnt = replyCnt;
+	}
+	public int getLikeCnt() {
+		return likeCnt;
+	}
+	public void setLikeCnt(int likeCnt) {
+		this.likeCnt = likeCnt;
+	}
 	public int getcNum() {
 		return cNum;
 	}
@@ -31,7 +46,9 @@ public class CommentVO {
 	}
 	@Override
 	public String toString() {
-		return "commentVO [cNum=" + cNum + ", com=" + com + ", ID=" + ID + ", PW=" + PW + "]";
+		return "CommentVO [cNum=" + cNum + ", com=" + com + ", ID=" + ID + ", PW=" + PW + ", replyCnt=" + replyCnt
+				+ ", likeCnt=" + likeCnt + "]";
 	}
+	
 
 }
