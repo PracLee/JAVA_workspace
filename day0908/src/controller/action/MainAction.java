@@ -34,6 +34,7 @@ public class MainAction implements Action{
 		for(int i=0;i<Cdata.size();i++){
 			ArrayList<ReplyVO> Rdata = ReplyDAO.selectAll(Cdata.get(i).getcNum());	// 댓글 개수 가져오기
 			CommentReply cr = new CommentReply();
+			System.out.println(cr);
 			cr.setC(Cdata.get(i));
 			cr.setrList(Rdata);
 			datas.add(cr);

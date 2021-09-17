@@ -112,7 +112,13 @@ public class CommentDAO {
 				pstmt = conn.prepareStatement(sql_updateLike);
 				pstmt.setInt(1, CVO.getcNum());
 				pstmt.executeUpdate();
-			}else {
+			}else if(action.equals("LikeDown")) {
+				String sql_updateLike = "update ctable set replyCnt = replyCnt-1 where cNum = ?";
+				pstmt = conn.prepareStatement(sql_updateLike);
+				pstmt.setInt(1, CVO.getcNum());
+				pstmt.executeUpdate();
+			}
+			else if(action.equals("update")) {
 				pstmt = conn.prepareStatement(sql_update);
 				pstmt.setString(1, CVO.getCom());
 				pstmt.setInt(2, CVO.getcNum());

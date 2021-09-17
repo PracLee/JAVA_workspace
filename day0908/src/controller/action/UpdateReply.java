@@ -12,6 +12,7 @@ public class UpdateReply implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ActionForward forward = new ActionForward();
+		request.setAttribute("cnum", request.getParameter("cnum"));
     	request.setAttribute("rnum", request.getParameter("rnum"));
     	request.setAttribute("rom", request.getParameter("rom"));
     	forward.setPath("reEdit.jsp");

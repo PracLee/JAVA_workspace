@@ -78,8 +78,11 @@ public class FrontController extends HttpServlet {
 		else if(action.equals("/upply.do")) {
 			forward = new UpdateReply().execute(request, response);
 		}
-		else if(action.equals("/redelete.do")) {
+		else if(action.equals("/reupdate.do")) {
 			forward = new ReplyUpdate().execute(request, response);
+		}
+		else if(action.equals("/redelete.do")) {
+			forward = new ReDelete().execute(request, response);
 		}
 		else if(action.equals("/likeUp.do")) {
 			forward = new LikeUp().execute(request, response);

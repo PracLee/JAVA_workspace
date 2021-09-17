@@ -11,7 +11,7 @@
 <title>댓글수정</title>
 </head>
 <body>
-	<form method="post" action="ctrl.jsp?action=reupdate">
+	<form method="post" action="reupdate.do">
 		<table>
 			<tr>
 				<td><input type="text" name="rom" placeholder="${rom }"></td>
@@ -22,8 +22,9 @@
 		</table>
 	</form>
 	<hr>
-	<form action="ctrl.jsp?action=redelete" method="post">
-		<input type="hidden" value="${rnum }" name="rnum"> <input
+	<form action="redelete.do" method="post">
+		<input type="hidden" value="${rnum }" name="rnum"><input
+			type="hidden" value="${cnum }" name="cnum"> <input
 			type="hidden" name="mcnt" value="${mcnt }"> <input
 			type="submit" value="댓글 삭제!">
 	</form>

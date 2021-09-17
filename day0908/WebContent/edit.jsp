@@ -10,7 +10,7 @@
 <title>글수정</title>
 </head>
 <body>
-	<form method="post" action="ctrl.jsp?action=update">
+	<form method="post" action="update.do">
 		<table>
 			<tr>
 				<td><input type="text" name="com" value="${com }"></td>
@@ -21,7 +21,7 @@
 		</table>
 	</form>
 	<hr>
-	<form action="ctrl.jsp?action=delete" method="post">
+	<form action="delete.do" method="post">
 		<input type="hidden" value="${cNum }" name="cNum"> <input
 			type="hidden" name="mcnt" value="${mcnt }"> <input
 			type="submit" value="댓글 삭제!">
