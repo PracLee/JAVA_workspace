@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.CommentDAO;
 import model.CommentVO;
 
-public class UpdateAction implements Action{
+public class FindAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
@@ -17,11 +17,12 @@ public class UpdateAction implements Action{
 		ActionForward forward = new ActionForward();
 		CommentVO CVO = new CommentVO();
 		CommentDAO CDAO = new CommentDAO();
-		CVO.setcNum(Integer.parseInt(request.getParameter("cNum")));
-    	CVO.setCom(request.getParameter("com"));
-    	CDAO.update(CVO, "update");
-    	forward.setPath("main.do");
-		forward.setRedirect(false);
+    	CVO.setID(request.getParameter("ID"));
+    	request.setAttribute("datas", CDAO.selectOne(CVO));
+    	request.setAttribute("ID", CVO.getID());
+    	
+    	forward.setPath("findList.jsp");
+    	forward.setRedirect(false);
 		return forward;
 	}
 

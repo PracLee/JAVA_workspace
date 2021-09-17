@@ -6,22 +6,22 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.CommentDAO;
-import model.CommentVO;
+import model.ReplyDAO;
+import model.ReplyVO;
 
-public class UpdateAction implements Action{
+public class ReplyUpdate implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ActionForward forward = new ActionForward();
-		CommentVO CVO = new CommentVO();
-		CommentDAO CDAO = new CommentDAO();
-		CVO.setcNum(Integer.parseInt(request.getParameter("cNum")));
-    	CVO.setCom(request.getParameter("com"));
-    	CDAO.update(CVO, "update");
+		ReplyVO RVO = new ReplyVO();
+		ReplyDAO RDAO = new ReplyDAO();
+		RVO.setRnum(Integer.parseInt(request.getParameter("rnum")));
+    	RVO.setRom(request.getParameter("rom"));
+    	RDAO.update(RVO);
     	forward.setPath("main.do");
-		forward.setRedirect(false);
+    	forward.setRedirect(false);
 		return forward;
 	}
 

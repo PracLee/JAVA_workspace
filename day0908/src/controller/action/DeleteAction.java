@@ -8,8 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.CommentDAO;
 import model.CommentVO;
+import model.ReplyDAO;
 
-public class UpdateAction implements Action{
+public class DeleteAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
@@ -17,9 +18,10 @@ public class UpdateAction implements Action{
 		ActionForward forward = new ActionForward();
 		CommentVO CVO = new CommentVO();
 		CommentDAO CDAO = new CommentDAO();
+		ReplyDAO RDAO = new ReplyDAO();
 		CVO.setcNum(Integer.parseInt(request.getParameter("cNum")));
-    	CVO.setCom(request.getParameter("com"));
-    	CDAO.update(CVO, "update");
+    	RDAO.deleteComment(CVO);
+    	CDAO.delete(CVO);
     	forward.setPath("main.do");
 		forward.setRedirect(false);
 		return forward;

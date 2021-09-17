@@ -21,6 +21,7 @@ public class IDPWcheck implements Action{
         	forward.setRedirect(false);
     	}else{
     		PrintWriter out=response.getWriter();
+    		response.setContentType("text/html; charset=UTF-8");
 			out.println("<script>alert('비밀번호가 일치하지 않습니다!')");
 			out.println("history.go(-1)</script>");
     	}

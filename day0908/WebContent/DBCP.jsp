@@ -17,7 +17,7 @@
 	<ad:ad ad02_src="img/ad02.jpg" ad03_href="#"
 		ad02_href="http://item.gmarket.co.kr/Item?goodscode=1566592119"
 		ad01_href="#" ad01_src="img/ad01.jpg" ad03_src="img/ad03.jpg" />
-	<form method="post" action="ctrl.jsp?action=insert">
+	<form method="post" action="insert.do">
 		<table>
 			<tr>
 				<td><input type="text" name="com" placeholder="내용입력(300자까지)">
@@ -31,7 +31,7 @@
 		</table>
 		<hr>
 	</form>
-	<form method="post" action="ctrl.jsp?action=find">
+	<form method="post" action="insert.do">
 		<table>
 			<tr>
 				<td><input type="text" name="ID" placeholder="찾는 ID"></td>
@@ -52,7 +52,7 @@
 			<th>좋아요 수</th>
 		</tr>
 		<c:forEach var="cr" items="${datas }">
-			<form action="ctrl.jsp?action=IDPWcheck" method="post">
+			<form action="IDPWcheck.do" method="post">
 				<tr>
 					<th>${cr.c.cNum }</th>
 					<th>${cr.c.com }</th>
@@ -61,7 +61,7 @@
 						placeholder="수정·삭제하려면 비밀번호를 입력해주세요!" name="PWcheck"></td>
 					<td><input type="submit" value="수정·삭제"></td>
 					<td>${cr.c.replyCnt}</td>
-					<td><a href="ctrl.jsp?action=likeUp&cNum=${cr.c.cNum }" id="like">❤</a></td>
+					<td><a href="likeUp.do?cNum=${cr.c.cNum }&mcnt=${mcnt }" id="like">❤</a></td>
 					<td>${cr.c.likeCnt}</td>
 					<input type="hidden" value="${cr.c.cNum }" name="cNum">
 					<input type="hidden" value="${cr.c.com }" name="com">
@@ -70,7 +70,7 @@
 				</tr>
 			</form>
 			<c:forEach var="rList" items="${cr.rList}">
-				<form action="ctrl.jsp?action=upply" method="post">
+				<form action="upply.do" method="post">
 					<tr>
 						<td></td>
 						<td>↳</td>
@@ -85,7 +85,7 @@
 					</tr>
 				</form>
 			</c:forEach>
-			<form action="ctrl.jsp?action=insertReply" method="post">
+			<form action="insertReply.do" method="post">
 				<tr>
 					<td></td>
 					<td><input type="text" placeholder="댓글 입력" name="rom"></td>
@@ -97,7 +97,7 @@
 			</form>
 		</c:forEach>
 		<tr>
-			<td><a href="ctrl.jsp?action=goMain&mcnt=${mcnt+1}">더보기&gt;&gt;</a>
+			<td><a href="main.do?mcnt=${mcnt+1}">더보기&gt;&gt;</a>
 			</td>
 		</tr>
 

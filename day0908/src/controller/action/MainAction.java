@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import model.*;
 import model.CommentReply;
 import model.CommentVO;
@@ -19,13 +21,13 @@ public class MainAction implements Action{
 		ActionForward forward = new ActionForward();
 		String action = request.getParameter("action");
 		System.out.println(action);
-		String url="ctrl.jsp?action=goMain";	
+		String url="main.do";	
 		String mcntt=request.getParameter("mcnt");
 		int mcnt=1;
 		if(mcntt!=null){
 			mcnt=Integer.parseInt(mcntt);
 		}
-		url= url+ "&mcnt="+mcnt;
+		url= url+ "?mcnt="+mcnt;
 		request.setAttribute("url", url);
 		ArrayList<CommentReply> datas = new ArrayList<CommentReply>();
 		ArrayList<CommentVO> Cdata = CommentDAO.selectAll(mcnt);
@@ -36,11 +38,12 @@ public class MainAction implements Action{
 			cr.setrList(Rdata);
 			datas.add(cr);
 		}
-		//session.setAttribute("mcnt", mcnt);
+		HttpSession session = request.getSession();
+		session.setAttribute("mcnt", mcnt);
 		request.setAttribute("datas", datas);
 		
 		forward.setRedirect(false);
-		forward.setPath("main.jsp");
+		forward.setPath("DBCP.jsp");
 
 		return forward;
 	}

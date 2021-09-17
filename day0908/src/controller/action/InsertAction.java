@@ -21,7 +21,7 @@ public class InsertAction implements Action{
     	CVO.setID(request.getParameter("ID"));
     	CVO.setPW(request.getParameter("PW"));
     	CDAO.insert(CVO);
-    	forward.setPath("/main.do");
+    	forward.setPath("main.do");
     	forward.setRedirect(false);
 		return forward;
 	}

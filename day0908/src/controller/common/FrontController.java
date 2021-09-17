@@ -50,10 +50,9 @@ public class FrontController extends HttpServlet {
 		String cp=request.getContextPath();
 		//System.out.println("cp: "+cp);
 		String action=uri.substring(cp.length());
-		//System.out.println("action: "+action);
+		System.out.println("action: "+action);
 
-		// control을 매핑하는 역할
-		///// if(action.equals("main")){
+		
 		ActionForward forward = null;
 		if(action.equals("/main.do")) {
 			forward = new MainAction().execute(request, response);
@@ -61,8 +60,29 @@ public class FrontController extends HttpServlet {
 		else if(action.equals("/insert.do")) {
 			forward = new InsertAction().execute(request, response);
 		}
-		else if(action.equals("IDPWcheck")) {
+		else if(action.equals("/IDPWcheck.do")) {
 			forward = new IDPWcheck().execute(request, response);
+		}
+		else if(action.equals("/update.do")) {
+			forward = new UpdateAction().execute(request, response);
+		}
+		else if(action.equals("/delete.do")) {
+			forward = new DeleteAction().execute(request, response);
+		}
+		else if(action.equals("/find.do")) {
+			forward = new FindAction().execute(request, response);
+		}
+		else if(action.equals("/insertReply.do")) {
+			forward = new InsertReply().execute(request, response);
+		}
+		else if(action.equals("/upply.do")) {
+			forward = new UpdateReply().execute(request, response);
+		}
+		else if(action.equals("/redelete.do")) {
+			forward = new ReplyUpdate().execute(request, response);
+		}
+		else if(action.equals("/likeUp.do")) {
+			forward = new LikeUp().execute(request, response);
 		}
 
 		// 사용자에게 처리된 데이터를 출력
