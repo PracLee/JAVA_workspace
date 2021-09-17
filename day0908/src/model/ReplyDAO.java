@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class ReplyDAO {
-	String sql_selectAll = "select * from reply where cnum = ? order by rNum";
 	String sql_selectOne = "select * from reply where cnum = ? and rid = ? and rom=?";
 	String sql_update = "update reply set rom = ? where rNum = ?";
 	String sql_delete = "delete from reply where rNum = ?";
@@ -45,8 +44,9 @@ public class ReplyDAO {
 		return data;
 	}
 	
-	public ArrayList<ReplyVO> selectAll(int cnum) {
+	public static ArrayList<ReplyVO> selectAll(int cnum) {
 		//String sql_insert = "insert into reply values ((SELECT NVL(MAX(rnum),0) + 1 FROM reply),?,?,?)";
+		String sql_selectAll = "select * from reply where cnum = ? order by rNum";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ArrayList<ReplyVO> datas = new ArrayList<ReplyVO>();
