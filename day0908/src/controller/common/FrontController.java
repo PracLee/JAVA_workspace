@@ -52,7 +52,7 @@ public class FrontController extends HttpServlet {
 		String action=uri.substring(cp.length());
 		System.out.println("action: "+action);
 
-		
+
 		ActionForward forward = null;
 		if(action.equals("/main.do")) {
 			forward = new MainAction().execute(request, response);
@@ -89,12 +89,14 @@ public class FrontController extends HttpServlet {
 		}
 
 		// 사용자에게 처리된 데이터를 출력
-		if(forward.isRedirect()) {
-			response.sendRedirect(forward.getPath());
-		}
-		else {
-			RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
-			dispatcher.forward(request, response);
+		if(forward != null) {
+			if(forward.isRedirect()) {
+				response.sendRedirect(forward.getPath());
+			}
+			else {
+				RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
+				dispatcher.forward(request, response);
+			}
 		}
 
 	}
