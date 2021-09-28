@@ -7,8 +7,8 @@
 <title>Email 인증번호 입력</title>
 <script type="text/javascript">
 	function checkCode() {
-		var v1 = checkEmail.code_check.value;
-		var v2 = checkEamil.code.value;
+		var v1 = document.getElementById('checkEmail').code_check.value;
+		var v2 = document.getElementById('checkEmail').code.value;
 		if (v1 != v2) {
 			document.getElementById('checkMailCode').style.color = "red";
 			document.getElementById('checkMailCode').innerHTML = "잘못된 인증번호";
