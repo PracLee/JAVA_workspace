@@ -28,7 +28,7 @@ public class MailSend {
         MimeMessage msg = new MimeMessage(session);
         try {
             msg.setSentDate(new Date());
-            msg.setFrom(new InternetAddress("bjlee.spsbsc@gmail.com", "Tester"));
+            msg.setFrom(new InternetAddress("4tunagroup@gmail.com", "Tester"));
             InternetAddress to = new InternetAddress("spsbsc@naver.com");
             msg.setRecipient(Message.RecipientType.TO, to);
             msg.setSubject("mail Test", "UTF-8");
