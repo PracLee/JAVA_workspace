@@ -8,6 +8,7 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 public class Driver {
 	public static void main(String[] args) {
 		AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
+		
 		Car car = (Car)factory.getBean("ferrari");
 		car.turnOn();
 		car.speedUp();
@@ -20,6 +21,7 @@ public class Driver {
 		for(String v : list) {
 			System.out.println(v);
 		}
+		
 		factory.close();
 	}
 }

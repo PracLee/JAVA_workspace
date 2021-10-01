@@ -6,11 +6,10 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 public class Client {
 	public static void main(String[] args) {
 		AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
-		Phone p = (Phone)factory.getBean("phone");
-		p.power();
-		p.soundDown();
-		p.soundUp();
-		
+
+		Champ champ = (Champ)factory.getBean("timo");
+		champ.attack();
+		//champ.print();
 		
 		factory.close();
 	}

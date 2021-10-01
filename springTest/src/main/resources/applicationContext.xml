@@ -1,24 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	<bean class="test.CBean" id="cb">
-		<property name="list">
-			<list>
-				<value>집</value>
-				<value>학원</value>
-				<value>PC방</value>
-			</list>
-		</property>
-	</bean>
-
-
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+	<!-- <bean class="test.CBean" id="cb"> <property name="list"> <list> <value>집</value> 
+		<value>학원</value> <value>PC방</value> </list> </property> </bean> -->
 	<!-- <bean class="test.Merecedes" id="benz" init-method="flex"> <constructor-arg 
 		ref="OB"></constructor-arg> </bean> -->
-	<bean class="test.Ferrari" id="ferrari">
-		<property name="name" value="ferrari" />
-		<property name="station" ref="ob" />
+	<!-- <bean class="test.Ferrari" id="ferrari"> <property name="name" value="ferrari" 
+		/> <property name="station" ref="ob" /> </bean> <bean class="test.GSCaltex" 
+		id="gsc" /> <bean class="test.OilBank" id="ob" /> -->
+	<!-- <bean class="test.Timo" id="champ">
+		<property name="name" value="캡틴 티모" />
+		<property name="inven">
+			<list>
+				<value>내셔의 이빨</value>
+				<value>균열 생성기</value>
+				<value>리안드리</value>
+			</list>
+		</property>
+		<property name="weapon" ref="bow" />
+
 	</bean>
-	<bean class="test.GSCaltex" id="gsc" />
-	<bean class="test.OilBank" id="ob" />
+	<bean class="test.Sword" id="sword" />
+	<bean class="test.Bow" id="bow" /> -->
+	<context:component-scan base-package="test" />
+	
+	<bean class ="test.Sword" id ="sword"/>
+	<bean class ="test.Bow" id ="bow"/>
 </beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
