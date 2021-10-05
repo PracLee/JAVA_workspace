@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import model.JDBC;
 
-@Repository("boardDAO")
+@Repository("boardDAO")	//component를 상속받음!
 public class BoardDAO {
 	private Connection conn;
 	private PreparedStatement pstmt;
