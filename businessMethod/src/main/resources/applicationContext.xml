@@ -12,7 +12,7 @@
 		<aop:pointcut
 			expression="execution(* model.board.*Impl.*(..))" id="aPointcut" />
 		<aop:aspect ref="logPlus">
-			<aop:before method="printPlusLog" pointcut="aPointcut" />
+			<aop:before method="printPlusLog" pointcut-ref="aPointcut" />
 		</aop:aspect>
 	</aop:config>
 </beans>
