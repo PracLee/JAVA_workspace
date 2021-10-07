@@ -8,11 +8,36 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
 	<context:component-scan base-package="model" />
 	<bean class="com.lee.app.common.LogPlusAdvice" id="logPlus" />
+	<bean class="com.lee.app.common.AfterAdvice" id="AA" />
+	<bean class="com.lee.app.common.AfterThrowingAdvice" id="ATA" />
+	<bean class="com.lee.app.common.AterReturningAdvice" id="ARA" />
+	<bean class="com.lee.app.common.AroundAdvice" id="AR" />
+
 	<aop:config>
 		<aop:pointcut
-			expression="execution(* model.board.*Impl.*(..))" id="aPointcut" />
-		<aop:aspect ref="logPlus">
-			<aop:before method="printPlusLog" pointcut-ref="aPointcut" />
+			expression="execution(* model.board.*Impl.*get*(..))" id="aPointcut" />
+		<aop:pointcut
+			expression="execution(* model.board.*Impl.*(..))" id="bPointcut" />
+		<aop:pointcut
+			expression="execution(* model.member.*Impl.*get*(..))" id="cPointcut" />
+		<aop:pointcut
+			expression="execution(* model.member.*Impl.*(..))" id="dPointcut" />
+<!-- 		<aop:aspect ref="AA">
+			<aop:after method="printLog" pointcut-ref="bPointcut" />
+		</aop:aspect>
+		 -->
+<!-- 		<aop:aspect ref="ATA">
+			<aop:after-throwing method="printLog"
+				pointcut-ref="aPointcut" throwing="e"/>
+		</aop:aspect> -->
+		<!--
+		<aop:aspect ref="ARA">
+			<aop:after-returning method="printLog"
+				pointcut-ref="cPointcut" returning="obj"/>
+		</aop:aspect>
+		 -->
+ 		<aop:aspect ref="AR">
+			<aop:around method="printLog" pointcut-ref="dPointcut" />
 		</aop:aspect>
 	</aop:config>
 </beans>
