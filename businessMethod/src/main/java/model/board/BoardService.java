@@ -1,6 +1,6 @@
 package model.board;
 
-import java.util.ArrayList;
+import java.util.List;
 
 
 public interface BoardService {
@@ -9,6 +9,6 @@ public interface BoardService {
 	public void updateBoard(BoardVO vo);
 	public void deleteBoard(BoardVO vo);
 	public BoardVO getOne(BoardVO vo);
-	public ArrayList<BoardVO> getAll();
+	public List<BoardVO> getAll();
 	
 }
