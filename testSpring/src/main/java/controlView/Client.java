@@ -22,10 +22,9 @@ public class Client {
 		mvo.setRole("admin");
 		System.out.println(ms.selectOne(mvo));
 		System.out.println(ms.selectAll());
-		bvo.setContent("gg");
 		//bs.insert(bvo);
 		System.out.println(bs.selectOne(bvo));
-		System.out.println(bs.selectAll());
+		System.out.println(bs.selectAll("gg"));
 		factory.close();
 	}
 }

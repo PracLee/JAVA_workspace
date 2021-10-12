@@ -17,8 +17,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<BoardVO> selectAll() {
-		return bdao.getBoardList();
+	public List<BoardVO> selectAll(String word) {
+		return bdao.getBoardList(word);
 	}
 
 	@Override

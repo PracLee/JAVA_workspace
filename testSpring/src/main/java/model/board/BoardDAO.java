@@ -35,9 +35,11 @@ public class BoardDAO {
 	      jt.update(deleteSQL,vo.getId());
 	   }
 	   
-	   public List<BoardVO> getBoardList() {
+	   public List<BoardVO> getBoardList(String word) {
 	      System.out.println("jdbcTemplate¿∏∑Œ getBoardList");
-	      return jt.query(getBoardListSQL,new BoardRowMapper());
+	      word = "%"+word+"%";
+	      Object[] args= { word };
+	      return jt.query(getBoardListSQL,args,new BoardRowMapper());
 	   }
 	   
 	   public BoardVO getBoard(BoardVO vo) {
