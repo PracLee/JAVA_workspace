@@ -22,6 +22,7 @@ public class Client {
 		mvo.setRole("admin");
 		System.out.println(ms.selectOne(mvo));
 		System.out.println(ms.selectAll());
+		bvo.setId(1);
 		//bs.insert(bvo);
 		System.out.println(bs.selectOne(bvo));
 		System.out.println(bs.selectAll("gg"));
