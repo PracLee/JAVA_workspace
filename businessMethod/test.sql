@@ -21,3 +21,4 @@ select * from member;
 insert into board(id, title, writer,content) values(1,'title','ÀÌ¾¾','content');
 select * from board;
 select * from member;
+select * from board where id=1;
