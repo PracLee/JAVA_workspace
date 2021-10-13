@@ -16,10 +16,11 @@ public class Client {
 		BoardService bs=(BoardService)factory.getBean("boardService");
 		MemberVO mvo = new MemberVO();
 		BoardVO bvo = new BoardVO();
-		mvo.setId("admin");
+		mvo.setId("spsbsc");
 		mvo.setPw("1234");
-		mvo.setName("½º´Ô");
-		mvo.setRole("admin");
+		mvo.setName("´Ô´Ô");
+		mvo.setRole("user");
+		ms.insert(mvo);
 		System.out.println(ms.selectOne(mvo));
 		System.out.println(ms.selectAll());
 		bvo.setId(1);
